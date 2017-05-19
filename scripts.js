@@ -1,16 +1,33 @@
-const addButton = document.getElementById("insertButton"); //Get Button
-const item = document.getElementById("newListItem"); //Get value from input
-const ul = document.getElementById("to-do_list");
+const addButton = document.getElementById("add-button") // Get Button
+const newItem = document.getElementById("new-item") // Get value from input
+const toDoList = document.getElementById("to-do_list") // Get list
 
-const newListItem = () => {
-  const value = item.value
-  const li = document.createElement("li");
-  li.appendChild(document.createTextNode(value));
-  ul.appendChild(li)
+// add list item
+const newToDoItem = () => {
+  const toDoItem = document.createElement("li")
+  const removeButton = document.createElement("button")
+  removeButton.innerHTML = "remover"
+  toDoItem.textContent = newItem.value + ' '
+  toDoItem.appendChild(removeButton)
+  toDoList.appendChild(toDoItem)
   event.preventDefault()
 }
 
-//On click append to ul list
+// remove list item
+const removeToDoItem = () => {
+  if (event.target.tagName == 'BUTTON') {
+    let li = event.target.parentNode;
+    let ul = li.parentNode;
+    toDoList.removeChild(li);
+  }
+}
+
+// on click add list item
 addButton.addEventListener("click", function(){
-  newListItem()
-});
+  newToDoItem()
+})
+
+// on click remove list item
+toDoList.addEventListener('click', (event) => {
+  removeToDoItem()
+})
