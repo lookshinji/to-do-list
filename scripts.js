@@ -1,6 +1,7 @@
 const addButton = document.getElementById("add-button") // Get Button
 const newItem = document.getElementById("new-item") // Get value from input
 const toDoList = document.getElementById("to-do_list") // Get list
+const importance = document.getElementById("importance")
 
 // add list item
 const newToDoItem = () => {
@@ -8,8 +9,13 @@ const newToDoItem = () => {
   const removeButton = document.createElement("button")
   removeButton.innerHTML = "remover"
   toDoItem.textContent = newItem.value + ' '
+  if (importance.checked === true) {
+    toDoItem.appendChild(removeButton)
+    toDoList.insertBefore(toDoItem, toDoList.firstChild)
+  } else {
   toDoItem.appendChild(removeButton)
   toDoList.appendChild(toDoItem)
+  }
   event.preventDefault()
 }
 
